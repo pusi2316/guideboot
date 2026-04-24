@@ -1,0 +1,55 @@
+{
+  "inputVideo": "/tmp/test-input.webm",
+  "outputVideo": "/tmp/test-output.mp4",
+  "viewport": { "width": 1280, "height": 800 },
+  "steps": [
+    {
+      "stepIndex": 0,
+      "timestampMs": 1200,
+      "description": "Click the Login button",
+      "zoom": {
+        "targetX": 560,
+        "targetY": 340,
+        "targetWidth": 160,
+        "targetHeight": 44,
+        "zoomFactor": 2.5,
+        "durationMs": 2000,
+        "paddingPx": 40
+      }
+    },
+    {
+      "stepIndex": 1,
+      "timestampMs": 3500,
+      "description": "Type email address into the input field",
+      "zoom": {
+        "targetX": 400,
+        "targetY": 280,
+        "targetWidth": 480,
+        "targetHeight": 40,
+        "zoomFactor": 2.0,
+        "durationMs": 1800,
+        "paddingPx": 30
+      }
+    },
+    {
+      "stepIndex": 2,
+      "timestampMs": 6100,
+      "description": "Click Submit — no zoom on this step",
+      "zoom": null
+    },
+    {
+      "stepIndex": 3,
+      "timestampMs": 8400,
+      "description": "Dashboard loads successfully",
+      "zoom": {
+        "targetX": 100,
+        "targetY": 150,
+        "targetWidth": 900,
+        "targetHeight": 300,
+        "zoomFactor": 1.8,
+        "durationMs": 3000,
+        "paddingPx": 50
+      }
+    }
+  ]
+}
