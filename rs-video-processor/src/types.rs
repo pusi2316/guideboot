@@ -24,6 +24,10 @@ pub struct ZoomInfo {
     pub target_x: f64,
     #[serde(rename = "targetY")]
     pub target_y: f64,
+    #[serde(rename = "targetHeight")]
+    pub target_h: f64,
+    #[serde(rename = "targetWidth")]
+    pub target_w: f64,
     #[serde(rename = "zoomFactor")]
     pub zoom_factor: f64,
     #[serde(rename = "durationMs")]

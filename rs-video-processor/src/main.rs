@@ -1,3 +1,4 @@
+mod ffmpeg;
 mod types;
 
 use std::fs;
