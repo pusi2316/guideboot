@@ -36,6 +36,9 @@ fn main() -> Result<()> {
         );
     }
 
+    let segments = ffmpeg::ZoomSegment::collect_segments(&job);
+    println!("\n✅ {} zoom segments identified\n", segments.len());
+
     // Test ffmpeg is reachable
     println!("\nChecking ffmpeg...");
     run_ffmpeg(&["-version".to_string()])?;
