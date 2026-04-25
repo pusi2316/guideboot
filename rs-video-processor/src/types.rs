@@ -28,6 +28,8 @@ pub struct ZoomInfo {
     pub zoom_factor: f64,
     #[serde(rename = "durationMs")]
     pub duration_ms: u64,
+    #[serde(rename = "paddingPx")]
+    pub padding: Option<f64>,
 }
 
 #[derive(Debug, Deserialize)]
