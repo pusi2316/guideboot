@@ -39,9 +39,10 @@ fn main() -> Result<()> {
     let segments = ffmpeg::ZoomSegment::collect_segments(&job);
     println!("\n✅ {} zoom segments identified\n", segments.len());
 
-    // Test ffmpeg is reachable
-    println!("\nChecking ffmpeg...");
-    run_ffmpeg(&["-version".to_string()])?;
+    let args = ffmpeg::build_ffmpeg_args(&job, &segments);
+    println!("ffmpeg {}\n", args.join(" "));
+
+    run_ffmpeg(&args)?;
 
     Ok(())
 }
@@ -57,14 +58,25 @@ fn run_ffmpeg(args: &[String]) -> Result<()> {
     let stderr = child.stderr.take().unwrap();
     let reader = BufReader::new(stderr);
 
+    let mut last_lines: Vec<String> = Vec::new();
     for line in reader.lines() {
         let line = line?;
         if line.starts_with("frame=") {
             print!("[progress] {}\r", line.trim());
+        } else {
+            eprintln!("{line}");
+            last_lines.push(line);
+            if last_lines.len() > 20 {
+                last_lines.remove(0);
+            }
         }
     }
 
     let status = child.wait()?;
-    anyhow::ensure!(status.success(), "ffmpeg failed: {status}");
+    anyhow::ensure!(
+        status.success(),
+        "ffmpeg failed: {status}\n{}",
+        last_lines.join("\n")
+    );
     Ok(())
 }
